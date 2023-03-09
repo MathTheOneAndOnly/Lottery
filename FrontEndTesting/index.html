@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Lotto Testing Frontend</h1>
+<div class="section">
+    <div class="header">ROUND ENDS IN: <span class="timer" id="countDown">00:00</div>
+    <div class="caption">Finish Round: <div class="no-caption"><input id="rng1"></input><input id="rng2"></input><button id="finishRound" disabled onclick="finishRound()">Finish Round</button></div></div>
+    <div class="caption">Current Game: <div class="no-caption"><span id="currentGame">loading...</span></div></div>
+    <div class="caption">Current Round: <div class="no-caption"><span id="currentRound">loading...</span></div></div>
+    <div class="caption">Excluded Numbers: <div class="no-caption" id="excludedNumbers"><span>loading...</span></div></div>
+</div>
+<div class="section">
+    <div class="header">All Tickets</div>
+    <div class="tickets-container" id="allTickets"><div class="ticket">1</div><div class="ticket">2</div></div>
+    <div class="labels">
+        <div class="label-mine"> My tickets alive</div>
+        <div class="label-minebutdead"> My dead tickets</div>
+        <div class="label-others"> Other tickets alive</div>
+        <div class="label-dead"> Other dead tickets</div>
+    </div>
+</div>
+<div class="section">
+    <div class="header">My Tickets</div>  
+    <div class="caption">My tickets: <div class="no-caption"><span id="myTickets">loading...</span></div></div>
+    <div class="caption">My tickets alive: <div class="no-caption"><span id="myTicketsAlive">loading...</span></div></div>
+    <div class="caption">My rollable tickets: <div class="no-caption"><span id="myRollableTickets">loading...</span></div></div>
+    <div class="caption">Drawn Numbers: <div class="no-caption"><span id="rolledNumbers">loading...</span></div></div>
+    <div class="caption">Roll: <div class="no-caption"><input id="rollRng1"></input><input id="rollRng2"> <button id="roll" disabled onclick="roll()">Roll</button></div></div>
+</div>
+<div class="section">
+    <div class="header">Buy tickets</div>
+    <div class="caption">ETH Balance: <div class="no-caption"><span id="ethBalance">loading...</span></div></div>
+    <div class="caption">Cost per ticket: <div class="no-caption"><span id="ticketPrice">loading...</span></div></div>
+    <div class="caption">Buy tickets: <div class="no-caption"></div><input id="amount"></input> <button onclick="buyTickets()">Buy</button></div>
+    <div class="caption">Total cost: <div class="no-caption"></div><input id="totalCost"></input></div>
+</div>
+<div class="section">
+    <div class="header">Winnings</div>
+
+    <div id="winnings-container">loading...</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script src="./web3Integration.js"></script>
+</body>
+
+<style>
+    .section {
+        border: dotted #000000;
+        width: 45%;
+        margin-bottom: 20px;
+        padding: 10px
+    }
+    .section > div{
+        margin-top: 15px;
+    }
+    .caption {
+        font-weight: 600; 
+    }
+    .timer-caption {
+        font-size: 19px;
+        font-weight: 600; 
+    }
+    .no-caption {
+        display:inline;
+        font-weight: 100 !important; 
+    }
+    .header {
+        font-size: 19px;
+        font-weight: 600; 
+        margin-top: 0px !important;
+    }
+    .tickets-container {
+        display: inline-block;
+    }
+    .ticket {
+        margin-top: 10px;
+        margin-left: 10px;
+        float:left;
+        width: 35px;
+        height: 35px;
+        text-align: center;
+        line-height: 35px;
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .ticket.dead {
+        background: #a59c9c;
+    }
+    .ticket.minebutdead {
+        background: #9abda3;
+    }
+    .ticket.mine {
+        background: #66ff00;
+    }
+    .ticket.others {
+        background: #001aff;
+    }
+    .label-mine::before {
+        content: ' ';
+        background: #66ff00;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+    }
+    .label-others::before {
+        content: ' ';
+        background: #001aff;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+    }
+    .label-minebutdead::before {
+        content: ' ';
+        background: #9abda3;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+    }
+    .label-dead::before {
+        content: ' ';
+        background: #a59c9c;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+    }
+    .winnings:nth-child(even) {
+        border: 1px solid;
+        padding: 10px;
+        background: #e8e8e8;
+    }
+    .winnings:nth-child(odd) {
+        border: 1px solid;
+        padding: 10px;
+        background: aliceblue;
+    }
+</style>
+</html>
